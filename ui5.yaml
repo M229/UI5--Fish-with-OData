@@ -1,0 +1,43 @@
+specVersion: '2.5'
+metadata:
+  name: ui5fish
+type: application
+server:
+  customMiddleware:
+  - name: ui5-middleware-simpleproxy
+    afterMiddleware: compression
+    mountPath: /V2
+    configuration:
+      baseUri: "https://services.odata.org/V2"
+      strictSSL: false
+builder:
+  resources:
+    excludes:
+      - /test
+      - /localService
+      - Component-preload.js
+      - flp.html
+      - /appconfig
+      - index.local.html
+  customTasks:
+  - name: ui5-task-i18ncheck
+    afterTask: replaceVersion
+    configuration:
+      debug: false
+  - name: ui5-task-transpile
+    afterTask: replaceVersion
+    configuration:
+      debug: false
+      transpileAsync: true
+  - name: ui5-task-nwabap-deployer
+    afterTask: generateVersionInfo
+    configuration:
+      connection:
+        server: https://myserver:8000
+      ui5:
+        language: EN
+        package: ZZ_UI5_REPO
+        bspContainer: ZZ_UI5_TRACKED
+        bspContainerText: UI5 Upload
+        transportNo: DEVK900000
+        calculateApplicationIndex: true

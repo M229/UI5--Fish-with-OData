@@ -1,0 +1,38 @@
+<mvc:View
+	controllerName="test.controller.first"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page title="{i18n>APP_TITLE}">
+		<content>
+			<Label text="{i18n>APP_TITLE}" />
+			<Text text="{Table>CategoryID}" />
+			<Table items="{
+		path: '/Products',
+		parameters: {
+			expand: 'Supplier,Category,Order_Details',
+			operationMode: 'Client',
+			countMode: 'None'
+		}
+	}">
+		<columns>
+			<Column>
+				<Label text="ProductName" />
+			</Column>
+			<Column>
+				<Label text="UnitsInStock" />
+			</Column>
+			<Column>
+				<Label text="Supplier" />
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<Text text="{ProductName}" />
+			<Text text="{UnitsInStock}" />
+			<Text text="{Supplier/CompanyName}" />
+			<Text text="first view 1"/>
+		</ColumnListItem>
+	</Table>
+		</content>
+	</Page>
+</mvc:View>

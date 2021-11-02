@@ -1,0 +1,5 @@
+node_modules
+dist
+webapp/resources
+webapp/test-resources
+# .env

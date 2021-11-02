@@ -1,0 +1,11 @@
+<mvc:View
+	controllerName="test.controller.second"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page title="{i18n>APP_TITLE}">
+		<content>
+			<Label text="{i18n>Test1}" />
+		</content>
+	</Page>
+</mvc:View>
